@@ -1,0 +1,103 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--pulse-size, 40px);
+  height: var(--pulse-size, 40px);
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Speed variations */
+.slow {
+  --pulse-duration: 1.8s;
+}
+
+.normal {
+  --pulse-duration: 1.2s;
+}
+
+.fast {
+  --pulse-duration: 0.7s;
+}
+
+/* Circle pulse variant */
+.circleElement {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--pulse-color, #3b82f6);
+  opacity: 0.6;
+  animation: pulseScale var(--pulse-duration, 1.2s) ease-in-out infinite;
+}
+
+/* Ripple pulse variant (concentric rings scaling & fading) */
+.rippleElement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--pulse-color, #3b82f6);
+  opacity: 0;
+  box-sizing: border-box;
+  animation: rippleScale var(--pulse-duration, 1.2s) cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+.ripple1 {
+  animation-delay: 0s;
+}
+
+.ripple2 {
+  animation-delay: calc(var(--pulse-duration, 1.2s) * -0.3);
+}
+
+.ripple3 {
+  animation-delay: calc(var(--pulse-duration, 1.2s) * -0.6);
+}
+
+/* Double pulse variant */
+.doubleElement {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--pulse-color, #3b82f6);
+  opacity: 0.5;
+  animation: pulseScale var(--pulse-duration, 1.2s) ease-in-out infinite;
+}
+
+.double1 {
+  animation-delay: 0s;
+}
+
+.double2 {
+  animation-delay: calc(var(--pulse-duration, 1.2s) * -0.5);
+}
+
+/* Animations */
+@keyframes pulseScale {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes rippleScale {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}

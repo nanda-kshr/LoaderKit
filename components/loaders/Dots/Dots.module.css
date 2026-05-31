@@ -1,0 +1,77 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Base dot styles */
+.dot {
+  width: var(--dot-size, 10px);
+  height: var(--dot-size, 10px);
+  border-radius: 50%;
+  background-color: var(--dot-color, #3b82f6);
+  flex-shrink: 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+/* Speed definitions */
+.slow {
+  --dot-duration: 1.4s;
+  --dot-delay: 0.2s;
+}
+
+.normal {
+  --dot-duration: 0.9s;
+  --dot-delay: 0.15s;
+}
+
+.fast {
+  --dot-duration: 0.5s;
+  --dot-delay: 0.08s;
+}
+
+/* Variant animations */
+.bouncing .dot {
+  animation: bounce var(--dot-duration, 0.9s) infinite ease-in-out;
+}
+
+.flashing .dot {
+  animation: flash var(--dot-duration, 0.9s) infinite ease-in-out;
+}
+
+.chase .dot {
+  animation: chaseScale var(--dot-duration, 0.9s) infinite ease-in-out;
+}
+
+/* Keyframes */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes flash {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes chaseScale {
+  0%, 100% {
+    transform: scale(0.4);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
