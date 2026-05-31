@@ -22,9 +22,7 @@ import {
   LootChest,
   XPBar,
   PotionBrewing,
-  WizardSpell,
-  DragonFire,
-  SwordForging,
+  // Fantasy loaders removed
   GitCommit,
   TerminalTyping,
   DependencyGraph,
@@ -126,7 +124,7 @@ export default function Home() {
     if (family === "Skeleton") return "Skeletons";
     if (family === "LootChest" || family === "XPBar") return "Gaming";
     if (family === "GitCommit" || family === "TerminalTyping" || family === "DependencyGraph" || family === "ApiRequest") return "Coding";
-    if (family === "PotionBrewing" || family === "WizardSpell" || family === "DragonFire" || family === "SwordForging") return "Fantasy";
+    // Fantasy category removed
     if (family === "PlanetOrbit" || family === "SatelliteSignal" || family === "RocketAssembly") return "Space";
     if (family === "Carrot" || family === "Watermelon" || family === "Grape" || family.endsWith("Bar")) return "Fruits";
     return "Classic";
@@ -401,7 +399,7 @@ export default function Home() {
       description: "Delightful grape cluster getting eaten 2-3 at a time with custom worrying/shocked expressions & particle physics. Click to bite!",
       version: "v1.0.0",
       render: ({ color, size, speed }) => (
-        <Grape size={size} color={forceColor ? color : "#7a38d6"} speed={speed} biteColor={cardBgClr} />
+        <Grape size={size} color={forceColor ? color : "#7a38d6"} speed={speed}/>
       ),
     },
     // Fruit Progress Bars
@@ -493,51 +491,7 @@ export default function Home() {
         <XPBar speed={speed} interactive={true} showLabels={true} />
       ),
     },
-    // Fantasy
-    {
-      id: "fantasy-wizard-spell",
-      name: "Wizard Spell",
-      family: "WizardSpell",
-      variant: "spell",
-      description: "A magical rune circle draws itself while glowing symbols rotate around it.",
-      version: "v1.0.0",
-      render: ({ color, size, speed }) => (
-        <WizardSpell size={size * 1.6} speed={speed} color={color} />
-      ),
-    },
-    {
-      id: "fantasy-dragon-fire",
-      name: "Dragon Fire",
-      family: "DragonFire",
-      variant: "fire",
-      description: "A dragon breathes fire that gradually fills a progress bar.",
-      version: "v1.0.0",
-      render: ({ color, size, speed }) => (
-        <DragonFire size={size * 1.4} speed={speed} fireColor={color} interactive={true} />
-      ),
-    },
-    {
-      id: "fantasy-sword-forging",
-      name: "Sword Forging",
-      family: "SwordForging",
-      variant: "forge",
-      description: "A sword is forged step-by-step: heating, hammering, cooling, and polishing.",
-      version: "v1.0.0",
-      render: ({ color, size, speed }) => (
-        <SwordForging size={size * 1.4} speed={speed} accentColor={color} interactive={true} />
-      ),
-    },
-    {
-      id: "fantasy-potion-brewing",
-      name: "Potion Brewing",
-      family: "PotionBrewing",
-      variant: "potion",
-      description: "A cauldron fills with glowing liquid while magical bubbles and sparks emerge.",
-      version: "v1.0.0",
-      render: ({ color, size, speed }) => (
-        <PotionBrewing size={size * 1.8} speed={speed} potionColor={color} interactive={true} />
-      ),
-    },
+    // Fantasy assets removed per user request
     // Coding
     {
       id: "coding-git-commit",
@@ -639,9 +593,9 @@ export default function Home() {
   const paginatedAssets = filteredAssets.slice(startIndex, startIndex + itemsPerPage);
 
   // Conditional sidebar flags based on categories
-  const showColor = selectedCategory === "All" || selectedCategory === "Classic" || selectedCategory === "Dots & Waves" || selectedCategory === "Fruits" || selectedCategory === "Gaming" || selectedCategory === "Coding" || selectedCategory === "Fantasy" || selectedCategory === "Space";
+  const showColor = selectedCategory === "All" || selectedCategory === "Classic" || selectedCategory === "Dots & Waves" || selectedCategory === "Fruits" || selectedCategory === "Gaming" || selectedCategory === "Coding" || selectedCategory === "Space";
   const showForceColor = selectedCategory === "All" || selectedCategory === "Fruits" || selectedCategory === "Gaming" || selectedCategory === "Space";
-  const showSpeed = selectedCategory === "All" || selectedCategory === "Classic" || selectedCategory === "Dots & Waves" || selectedCategory === "Fruits" || selectedCategory === "Gaming" || selectedCategory === "Coding" || selectedCategory === "Fantasy" || selectedCategory === "Space";
+  const showSpeed = selectedCategory === "All" || selectedCategory === "Classic" || selectedCategory === "Dots & Waves" || selectedCategory === "Fruits" || selectedCategory === "Gaming" || selectedCategory === "Coding" || selectedCategory === "Space";
   const showElementCount = selectedCategory === "All" || selectedCategory === "Dots & Waves";
   const showSkeleton = selectedCategory === "All" || selectedCategory === "Skeletons";
 
