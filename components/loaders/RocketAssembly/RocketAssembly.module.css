@@ -1,0 +1,149 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  user-select: none;
+}
+
+.floorShadow {
+  position: absolute;
+  bottom: 12px;
+  width: 60px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  filter: blur(3.5px);
+  z-index: 10;
+  transition: opacity 0.5s ease;
+}
+
+.rocketScene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 20;
+}
+
+.rocketSvg {
+  overflow: visible;
+}
+
+/* Part Assembly Fly-in Animations */
+.flyInBottom {
+  animation: flyInB 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes flyInB {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.flyInLeft {
+  animation: flyInL 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes flyInL {
+  0% { transform: translateX(-50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.flyInRight {
+  animation: flyInR 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes flyInR {
+  0% { transform: translateY(-40px) translateX(30px); opacity: 0; }
+  100% { transform: translateY(0) translateX(0); opacity: 1; }
+}
+
+.flyInWings {
+  animation: flyInW 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.35) forwards;
+}
+
+@keyframes flyInW {
+  0% { transform: scale(0.4); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Engine Flame Plume oscillations */
+.thrustPlume {
+  animation: flamePlume 0.1s linear infinite alternate;
+}
+
+@keyframes flamePlume {
+  0% { transform: scaleY(0.9) translateY(0); filter: brightness(1); }
+  100% { transform: scaleY(1.15) translateY(1.5px); filter: brightness(1.2); }
+}
+
+/* Blast Off flight animation on completion */
+.blastOffEffect {
+  animation: blastOff 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes blastOff {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  15% {
+    /* rumble wiggle before flight */
+    transform: translateY(2px) scale(1) rotate(-1.5deg);
+  }
+  25% {
+    transform: translateY(-2px) scale(1) rotate(1.5deg);
+  }
+  35% {
+    transform: translateY(1px) scale(0.98) rotate(-1deg);
+  }
+  50% {
+    /* ignition lift off */
+    transform: translateY(-20px) scale(0.95) rotate(0deg);
+  }
+  100% {
+    /* blast off into the clouds! */
+    transform: translateY(-220px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* Stage status banner */
+.stageBanner {
+  position: absolute;
+  bottom: -22px;
+  background: #2b384e;
+  color: #80d8ff;
+  font-family: monospace, sans-serif;
+  font-weight: 900;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+  z-index: 50;
+  text-align: center;
+  min-width: 90px;
+}
+
+/* Percent text label overlay */
+.percentageLabel {
+  position: absolute;
+  bottom: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #263238;
+  font-family: monospace, sans-serif;
+  font-weight: bold;
+  font-size: 9px;
+  pointer-events: none;
+  z-index: 30;
+  opacity: 0.8;
+}

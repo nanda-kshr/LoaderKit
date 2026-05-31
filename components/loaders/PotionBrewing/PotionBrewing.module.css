@@ -1,0 +1,159 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  user-select: none;
+}
+
+.floorShadow {
+  position: absolute;
+  bottom: 8px;
+  width: 70px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  filter: blur(4px);
+  z-index: 10;
+}
+
+.bottleWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.bottleSvg {
+  overflow: visible;
+  filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.15));
+}
+
+/* Glass highlights and waves */
+.potionLiquid {
+  transition: y 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquidWave {
+  transition: d 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
+  animation: waveMotion 1.8s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes waveMotion {
+  0% { transform: translateY(0px) rotate(-1deg) scaleY(1); }
+  100% { transform: translateY(1.5px) rotate(1deg) scaleY(1.08); }
+}
+
+/* Rising potion bubble animations inside liquid */
+.bBubble1 { animation: riseBubble 2.5s infinite ease-in; }
+.bBubble2 { animation: riseBubble 1.8s infinite 0.3s ease-in; }
+.bBubble3 { animation: riseBubble 3s infinite 0.1s ease-in; }
+.bBubble4 { animation: riseBubble 2.2s infinite 0.5s ease-in; }
+.bBubble5 { animation: riseBubble 2s infinite 0.8s ease-in; }
+.bBubble6 { animation: riseBubble 2.7s infinite 0.4s ease-in; }
+
+@keyframes riseBubble {
+  0% {
+    transform: translateY(20px) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+    transform: translateY(0) translateX(-1px) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) translateX(1px);
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(-80px) translateX(0) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Vapor/Steam bubbles rising from bottle lip */
+.steamContainer {
+  position: absolute;
+  top: 15px;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 30;
+  overflow: visible;
+}
+
+.steamBubble {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0px 0px 8px 2px currentColor;
+}
+
+.steam1 {
+  left: 12px;
+  animation: floatSteam 2.8s infinite ease-out;
+  color: #ff80ab;
+}
+
+.steam2 {
+  left: 20px;
+  animation: floatSteam 2s infinite 0.6s ease-out;
+  color: #ea80fc;
+}
+
+.steam3 {
+  left: 15px;
+  animation: floatSteam 3.5s infinite 1.2s ease-out;
+  color: #ff8a80;
+}
+
+@keyframes floatSteam {
+  0% {
+    transform: translateY(12px) scale(0.4);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateY(0) scale(1);
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-45px) translateX(var(--steam-dx, 8px)) scale(1.6);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+/* Bottle Neck Labels */
+.percentageLabel {
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: monospace, sans-serif;
+  font-weight: bold;
+  font-size: 9px;
+  pointer-events: none;
+  z-index: 35;
+  background: rgba(43, 29, 58, 0.75);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 1px 4px;
+  border-radius: 3px;
+  text-shadow: 0px 0px 3px rgba(255,255,255,0.3);
+}

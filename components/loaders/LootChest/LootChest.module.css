@@ -1,0 +1,165 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  user-select: none;
+}
+
+.particlesOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  overflow: visible;
+}
+
+.particle {
+  position: absolute;
+  pointer-events: none;
+  animation: explodeOut 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+.coin {
+  border-radius: 50%;
+}
+
+.gem {
+  width: 12px;
+  height: 12px;
+  background: transparent !important;
+}
+
+.sparkle {
+  border-radius: 50%;
+  animation: explodeOutSparkle 1s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+}
+
+@keyframes explodeOut {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(var(--dx, 50px), var(--dy, -80px)) scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes explodeOutSparkle {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx, 40px), var(--dy, -70px)) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.floorShadow {
+  position: absolute;
+  bottom: 5px;
+  width: 75px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 50%;
+  filter: blur(4px);
+  z-index: 10;
+}
+
+.chestWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 20;
+}
+
+.chestSvg {
+  overflow: visible;
+}
+
+/* Shaking mechanics based on progress */
+.shakeLight {
+  animation: wiggleAnim 0.8s ease-in-out infinite;
+}
+
+.shakeMedium {
+  animation: wiggleAnim 0.4s ease-in-out infinite;
+}
+
+.shakeExtreme {
+  animation: wiggleAnim 0.15s linear infinite;
+}
+
+@keyframes wiggleAnim {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg) translateY(-1px); }
+  75% { transform: rotate(2deg) translateY(0px); }
+}
+
+/* Lid opening transitions */
+.chestLid {
+  transform-origin: 25px 80px;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.35);
+}
+
+.lidOpened {
+  transform: translateY(-16px) rotate(-35deg);
+}
+
+/* Shine bursting light */
+.chestLightBurst {
+  transform-origin: 80px 75px;
+  animation: pulseLight 2s ease-in-out infinite;
+}
+
+@keyframes pulseLight {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 0.95; }
+}
+
+.interiorGlow {
+  animation: interiorPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes interiorPulse {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 0.7; }
+}
+
+/* Cute Banner */
+.banner {
+  position: absolute;
+  bottom: -22px;
+  background: #ffc107;
+  color: #1e1201;
+  font-family: monospace, sans-serif;
+  font-weight: 800;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 10px rgba(255, 193, 7, 0.4);
+  border: 1.5px solid #1a0c02;
+  animation: slideUpBanner 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  z-index: 60;
+}
+
+@keyframes slideUpBanner {
+  0% { transform: translateY(10px) scale(0.6); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}

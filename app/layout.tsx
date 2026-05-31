@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "LoaderKit — Premium React Loading Animations",
   description: "A gorgeous, hardware-accelerated loading animation library for React built with CSS Modules and Tailwind CSS.",
+  icons: {
+    icon: "/logo.ico",
+    shortcut: "/logo.ico",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

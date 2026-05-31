@@ -1,0 +1,110 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--spell-color);
+}
+
+.spellSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.outerRing {
+  fill: none;
+  stroke: var(--spell-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: drawRing var(--ring-duration) ease-in-out infinite;
+}
+
+.innerRing {
+  fill: none;
+  stroke: var(--spell-color);
+  stroke-width: 1.6;
+  stroke-dasharray: 6 8;
+  opacity: 0.6;
+  transform-origin: 100px 100px;
+  animation: rotateRing var(--orbit-duration) linear infinite;
+}
+
+.runes {
+  transform-origin: 100px 100px;
+  animation: rotateRing calc(var(--orbit-duration) * 1.4) linear infinite;
+}
+
+.rune {
+  fill: var(--spell-color);
+  opacity: 0.8;
+}
+
+.orbit {
+  transform-origin: 100px 100px;
+  animation: rotateRing calc(var(--orbit-duration) * 0.8) linear infinite reverse;
+}
+
+.orbitDot {
+  fill: var(--spell-color);
+  opacity: 0.7;
+  animation: runePulse 1.4s ease-in-out infinite;
+}
+
+.core {
+  filter: drop-shadow(0 0 12px var(--spell-color));
+}
+
+.sigils {
+  fill: none;
+  stroke: var(--spell-color);
+  stroke-width: 1.4;
+  opacity: 0.6;
+  stroke-linejoin: round;
+  animation: sigilGlow 2.2s ease-in-out infinite;
+}
+
+@keyframes drawRing {
+  0% {
+    stroke-dashoffset: 276;
+    opacity: 0.25;
+  }
+  45% {
+    stroke-dashoffset: 0;
+    opacity: 0.95;
+  }
+  100% {
+    stroke-dashoffset: -276;
+    opacity: 0.25;
+  }
+}
+
+@keyframes rotateRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes runePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes sigilGlow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}

@@ -1,0 +1,161 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  font-family: "Courier New", Courier, monospace;
+  color: #0f172a;
+  user-select: none;
+}
+
+.forgeSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.anvil {
+  fill: #1f2937;
+}
+
+.anvilBase {
+  fill: #111827;
+}
+
+.sword {
+  transform-origin: 60px 60px;
+}
+
+.blade {
+  fill: #cbd5f5;
+  filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.6));
+  transition: fill 0.3s ease;
+}
+
+.guard {
+  fill: #5b3a1a;
+}
+
+.handle {
+  fill: #7c2d12;
+}
+
+.pommel {
+  fill: #4b2a13;
+}
+
+.hammer {
+  transform-origin: 188px 34px;
+  opacity: 0;
+}
+
+.hammer rect {
+  fill: #374151;
+}
+
+.hammerHandle {
+  fill: #6b7280;
+}
+
+.sparks circle {
+  fill: var(--forge-accent);
+  opacity: 0;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.heating .blade {
+  fill: #f97316;
+  filter: drop-shadow(0 0 12px var(--forge-accent));
+}
+
+.heating .sparks circle {
+  opacity: 0.6;
+  animation: sparkPop 1.2s ease-in-out infinite;
+}
+
+.hammering .hammer {
+  opacity: 1;
+  animation: hammerStrike 0.7s ease-in-out infinite;
+}
+
+.cooling .blade {
+  fill: #38bdf8;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
+}
+
+.cooling .sparks circle {
+  opacity: 0.4;
+  animation: steamRise 1.4s ease-in-out infinite;
+}
+
+.polishing .blade {
+  fill: #f8fafc;
+  filter: drop-shadow(0 0 14px rgba(226, 232, 240, 0.8));
+}
+
+.polishing .sparks circle {
+  opacity: 0.5;
+  animation: polishSweep 1.4s ease-in-out infinite;
+}
+
+@keyframes hammerStrike {
+  0% {
+    transform: rotate(-20deg) translateY(0);
+  }
+  50% {
+    transform: rotate(12deg) translateY(6px);
+  }
+  100% {
+    transform: rotate(-20deg) translateY(0);
+  }
+}
+
+@keyframes sparkPop {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-6px) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-12px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+@keyframes steamRise {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-16px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes polishSweep {
+  0% {
+    transform: translateX(-12px) scale(0.5);
+    opacity: 0.2;
+  }
+  60% {
+    transform: translateX(6px) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(14px) scale(0.5);
+    opacity: 0.2;
+  }
+}

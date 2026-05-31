@@ -1,0 +1,460 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.effectOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 200px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.floatWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: levitate 3s ease-in-out infinite;
+}
+
+@keyframes levitate {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.floorShadow {
+  position: absolute;
+  bottom: 15px;
+  width: 70px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  filter: blur(3px);
+  transition: opacity 0.5s ease;
+  animation: shadowPulse 3s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.85); opacity: 0.6; }
+}
+
+.carrotWrapper {
+  position: relative;
+  transform: rotate(30deg);
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carrotWrapper.wobble {
+  animation: wobbleEffect 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes wobbleEffect {
+  0% { transform: rotate(30deg); }
+  20% { transform: rotate(20deg); }
+  40% { transform: rotate(38deg); }
+  60% { transform: rotate(26deg); }
+  80% { transform: rotate(32deg); }
+  100% { transform: rotate(30deg); }
+}
+
+.leaves {
+  position: relative;
+  width: 30px;
+  height: 20px;
+  margin-bottom: -8px;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.leaf {
+  position: absolute;
+  bottom: 0;
+  width: 12px;
+  height: 22px;
+  background: var(--leaf-color, #7dd181);
+  border-radius: 50% 50% 0 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.leafLeft {
+  left: 2px;
+  transform: rotate(-30deg);
+  transform-origin: bottom center;
+}
+
+.leafCenter {
+  left: 9px;
+  height: 28px;
+  z-index: 2;
+}
+
+.leafRight {
+  right: 2px;
+  transform: rotate(30deg);
+  transform-origin: bottom center;
+}
+
+.carrotBody {
+  position: relative;
+  width: 38px;
+  height: 96px;
+  background: var(--carrot-color, #ff9e43);
+  border-radius: 50% 50% 50% 50% / 10% 10% 90% 90%;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12), inset 2px 2px 6px rgba(255, 255, 255, 0.4), inset -2px -2px 6px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.face {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 15px;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.eyes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2px;
+}
+
+.eye {
+  width: 3.5px;
+  height: 3.5px;
+  background: #4a3623;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.mouth {
+  width: 7px;
+  height: 3.5px;
+  border-bottom: 1.5px solid #4a3623;
+  border-radius: 0 0 5px 5px;
+  margin: 3px auto 0;
+  transition: all 0.2s ease;
+}
+
+.worried .mouth {
+  border-bottom: none;
+  border-top: 1.5px solid #4a3623;
+  border-radius: 5px 5px 0 0;
+  margin-top: 5px;
+}
+
+.shocked .eye {
+  height: 1px;
+  border-radius: 0;
+  transform: translateY(1px);
+}
+
+.shocked .mouth {
+  width: 4px;
+  height: 4px;
+  border: 1.5px solid #4a3623;
+  border-radius: 50%;
+  background: #4a3623;
+}
+
+.bite {
+  position: absolute;
+  background-color: var(--bite-color, #ffffff);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 5;
+}
+
+.biteActive {
+  transform: scale(1);
+}
+
+.bite1 { bottom: -12px; right: -20px; width: 60px; height: 45px; }
+.bite2 { bottom: 8px; left: -20px; width: 60px; height: 45px; }
+.bite3 { bottom: 28px; right: -20px; width: 62px; height: 45px; }
+.bite4 { bottom: 48px; left: -20px; width: 62px; height: 50px; }
+.bite5 { bottom: 65px; right: -12px; width: 72px; height: 55px; }
+
+.crumb {
+  position: absolute;
+  background: var(--carrot-color, #ff9e43);
+  border-radius: 40%;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+  pointer-events: none;
+  user-select: none;
+  animation: fall 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  z-index: 10;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(40px) rotate(180deg) scale(0); opacity: 0; }
+}
+
+/* ========================================== */
+/* Bunny Variant - Eats from bottom up        */
+/* ========================================== */
+
+.bunnyScene {
+  width: 120px;
+  height: 160px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Carrot stands upright in the scene */
+.bunnyCarrotWrap {
+  position: absolute;
+  top: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+/* Carrot body specifically for bunny (upright, no rotation) */
+.bunnyCarrotBody {
+  position: relative;
+  width: 38px;
+  height: 96px;
+  background: var(--carrot-color, #ff9e43);
+  border-radius: 50% 50% 50% 50% / 10% 10% 90% 90%;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12), inset 2px 2px 6px rgba(255, 255, 255, 0.4), inset -2px -2px 6px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Bite overlays on the carrot - eaten from bottom */
+.bunnyBite {
+  position: absolute;
+  background-color: var(--bite-color, #ffffff);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 5;
+}
+
+.bunnyBiteActive {
+  transform: scale(1);
+}
+
+.bunnyBite1 { bottom: -10px; left: -18px; width: 55px; height: 40px; }
+.bunnyBite2 { bottom: 10px; right: -18px; width: 55px; height: 40px; }
+.bunnyBite3 { bottom: 30px; left: -15px; width: 50px; height: 38px; }
+.bunnyBite4 { bottom: 50px; right: -15px; width: 55px; height: 42px; }
+
+/* Bunny character */
+.bunny {
+  position: absolute;
+  bottom: -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bunnyPosIdle {
+  transform: translateY(0px);
+}
+
+.bunnyPos1 {
+  transform: translateY(-20px);
+}
+
+.bunnyPos2 {
+  transform: translateY(-40px);
+}
+
+.bunnyPos3 {
+  transform: translateY(-58px);
+}
+
+.bunnyPos4 {
+  transform: translateY(-76px);
+}
+
+.bunnyPosDone {
+  transform: translateY(-80px);
+}
+
+.bunnyHead {
+  width: 44px;
+  height: 34px;
+  background: #ffffff;
+  border-radius: 50% 50% 45% 45%;
+  border: 2px solid #e2e8f0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.06);
+}
+
+.bunnyEars {
+  display: flex;
+  gap: 6px;
+  position: absolute;
+  top: -16px;
+  z-index: 1;
+}
+
+.earL, .earR {
+  width: 10px;
+  height: 20px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 50% 50% 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.earL::after, .earR::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  right: 2px;
+  bottom: 0;
+  background: #fda4af;
+  border-radius: 50% 50% 0 0;
+}
+
+.bEyeWrap {
+  display: flex;
+  justify-content: space-between;
+  width: 22px;
+  position: absolute;
+  top: 10px;
+}
+
+.bEye {
+  width: 4px;
+  height: 4px;
+  background: #334155;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+/* Bunny normal eyes */
+.bEyeNormal {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+/* Bunny squint eyes during chomp */
+.bEyeChomp {
+  height: 2px;
+  border-radius: 2px;
+  transform: translateY(1px);
+}
+
+/* Bunny ^ ^ happy eyes */
+.bEyeHappy {
+  width: 5px;
+  height: 3px;
+  background: transparent;
+  border-top: 2px solid #334155;
+  border-radius: 50%;
+}
+
+.bMouth {
+  position: absolute;
+  top: 18px;
+  transition: all 0.2s ease;
+}
+
+.bMouthNormal {
+  width: 6px;
+  height: 4px;
+  border-bottom: 1.8px solid #475569;
+  border-radius: 0 0 50% 50%;
+}
+
+/* Wide open mouth for chomp */
+.bMouthOpen {
+  width: 10px;
+  height: 8px;
+  background: #334155;
+  border-radius: 0 0 50% 50%;
+}
+
+/* Chewing mouth (small, wiggly) */
+.bMouthChew {
+  width: 6px;
+  height: 4px;
+  background: #475569;
+  border-radius: 50%;
+  animation: chewWiggle 0.15s infinite alternate;
+}
+
+@keyframes chewWiggle {
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0.7); }
+}
+
+/* Happy smile */
+.bMouthHappy {
+  width: 10px;
+  height: 5px;
+  background: #fb7185;
+  border-radius: 0 0 50% 50%;
+}
+
+.bCheeks {
+  display: flex;
+  justify-content: space-between;
+  width: 34px;
+  position: absolute;
+  top: 15px;
+  pointer-events: none;
+}
+
+.bCheek {
+  width: 6px;
+  height: 4px;
+  background: #fda4af;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bCheekVisible {
+  opacity: 1;
+}
+
+/* Wobble on the carrot when bitten */
+.bunnyCarrotWobble {
+  animation: carrotShake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes carrotShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px) rotate(-2deg); }
+  50% { transform: translateX(3px) rotate(2deg); }
+  75% { transform: translateX(-2px) rotate(-1deg); }
+  100% { transform: translateX(0) rotate(0); }
+}
